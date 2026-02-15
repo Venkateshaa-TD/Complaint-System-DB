@@ -1,7 +1,7 @@
 // Supabase Configuration
 window.SUPABASE_CONFIG = {
-  URL: 'https://ukegtrbxeoojcgftooiz.supabase.co',
-  KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrZWd0cmJ4ZW9vamNnZnRvb2l6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4MTc3MDUsImV4cCI6MjA4NjM5MzcwNX0.kzekDEZwS30dT1nWnQjvpYFad2_32g7U60p8SPty-j0'
+  URL: 'https://yqilixfxaiuqqkzfrpgd.supabase.co',
+  KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlxaWxpeGZ4YWl1cXFremZycGdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzExNDQ3NjQsImV4cCI6MjA4NjcyMDc2NH0.mnkQCUFfY_mycgTQsSzvdtE17onHC6wdPwmsedMc_R4'
 };
 
 window.supabaseClient = null;
@@ -429,7 +429,7 @@ function filterAndPaginate() {
   } else {
     adminDiv.innerHTML = pageComplaints.map(c => `
       <div class='card'>
-        <h3>${c.title} <span style="color: #666; font-size: 0.9em;\">(ID: ${c.id})</span></h3>
+        <h3>${c.title} <span style="color: #666; font-size: 0.9em;">(ID: ${c.id})</span></h3>
         <p><b>Name:</b> ${c.name}</p>
         <p><b>Email:</b> ${c.email}</p>
         <p><b>Category:</b> ${c.category}</p>
@@ -440,7 +440,16 @@ function filterAndPaginate() {
           </select>
         </p>
         <p><b>Description:</b> ${c.description}</p>
-        ${c.photo_url ? `<div style="margin: 15px 0;"><img src="${c.photo_url}" alt="Complaint photo" style="max-width: 100%; max-height: 400px; border-radius: 8px;"></div>` : ''}
+        ${c.photo_url ? `
+          <div style="margin: 15px 0;">
+            <p><b>📸 Photo:</b></p>
+            <img src="${c.photo_url}" alt="Complaint photo" 
+              style="max-width: 100%; max-height: 400px; border-radius: 10px; border: 3px solid #667eea; box-shadow: 0 4px 15px rgba(102,126,234,0.3); cursor: pointer; transition: transform 0.3s ease;" 
+              onclick="window.open('${c.photo_url}', '_blank')"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <p style="display:none; color: #e74c3c;">⚠️ Photo could not be loaded</p>
+          </div>
+        ` : '<p><b>📸 Photo:</b> No photo attached</p>'}
         <p><b>Submitted:</b> ${new Date(c.created_at).toLocaleString()}</p>
       </div>
     `).join('');
