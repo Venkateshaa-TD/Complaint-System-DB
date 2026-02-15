@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js" defer></script>
+  <style>
+    .admin-controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .admin-controls input {
+      flex: 1;
+      min-width: 200px;
+    }
+    .admin-controls button {
+      padding: 12px 20px;
+    }
+    .stats {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p style="color: #ccc; margin: 5px 0;">Manage all complaints</p>
+  </header>
+  
+  <main class="container">
+    <a href="index.html" class="button dark" style="margin-bottom: 20px;">← Back to Home</a>
+    <div class="admin-controls">
+      <select id="statusFilter" onchange="filterAndPaginate()" class="button blue" style="padding: 10px; cursor: pointer;">
+        <option value="">All Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Completed">Completed</option>
+      </select>
+      <button onclick="loadAdminDashboard()" class="button blue">🔄 Refresh</button>
+    </div>
+    
+    <div class="stats">
+      Total Complaints: <span id="totalCount">0</span> | 
+      Pending: <span id="pendingCount">0</span> |
+      Completed: <span id="completedCount">0</span>
+    </div>
+    
+    <h2>All Complaints</h2>
+    <div id="adminList"></div>
+    
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+      <button onclick="previousPage()" class="button blue" id="prevBtn">← Previous</button>
+      <span id="pageInfo">Page 1</span>
+      <button onclick="nextPage()" class="button blue" id="nextBtn">Next →</button>
+    </div>
+  </main>
+</body>
+</html>

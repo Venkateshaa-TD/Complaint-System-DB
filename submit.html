@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Submit Complaint</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header><h1>Submit Complaint</h1></header>
+
+  <main class="container">
+    <a href="index.html" class="button dark" style="margin-bottom: 20px;">← Back to Home</a>
+    <form id="complaintForm">
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="category" placeholder="Category" required>
+      <input type="text" name="title" placeholder="Title" required>
+      <textarea name="description" placeholder="Describe your issue" required></textarea>
+      
+      <!-- Photo Upload Section -->
+      <div class="photo-section">
+        <label><b>📸 Upload Photo (Optional)</b></label>
+        <div class="photo-buttons">
+          <button type="button" class="button blue" onclick="togglePhotoOptions()">Choose Photo</button>
+        </div>
+        
+        <div id="photoOptions" class="photo-options hidden">
+          <label for="cameraInput" class="button blue" style="display: block; margin: 10px 0; text-align: center; cursor: pointer;">
+            📷 Take Photo from Camera
+          </label>
+          <input type="file" id="cameraInput" name="photo" accept="image/*" capture="environment" style="display: none;">
+          
+          <label for="deviceInput" class="button blue" style="display: block; margin: 10px 0; text-align: center; cursor: pointer;">
+            🖼️ Upload from Device
+          </label>
+          <input type="file" id="deviceInput" name="photoDevice" accept="image/*" style="display: none;">
+        </div>
+        
+        <div id="photoPreview" class="photo-preview hidden">
+          <img id="previewImage" src="" alt="Preview" style="max-width: 100%; max-height: 300px; border-radius: 8px; margin-top: 10px;">
+          <button type="button" class="button dark" onclick="removePhoto()" style="margin-top: 10px;">✕ Remove Photo</button>
+        </div>
+      </div>
+      
+      <button type="submit" class="button blue">Submit</button>
+    </form>
+    <p id="msg" class="success"></p>
+  </main>
+</body>
+</html>

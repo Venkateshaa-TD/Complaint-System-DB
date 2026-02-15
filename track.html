@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Track Complaint</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header><h1>Track Complaint</h1></header>
+  <main class="container">
+    <a href="index.html" class="button dark" style="margin-bottom: 20px;">← Back to Home</a>
+    <input id="trackId" placeholder="Enter Complaint ID">
+    <button onclick="trackComplaint()" class="button blue">Search</button>
+
+    <div id="resultBox" class="card hidden"></div>
+  </main>
+</body>
+</html>
